@@ -70,7 +70,7 @@ function StudentForm({ show, handleClose, studentId = null }) {
 
   return (
     <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton={false}>
         <Modal.Title>Modal heading</Modal.Title>
       </Modal.Header>
       <Modal.Body>

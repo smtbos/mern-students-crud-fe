@@ -6,6 +6,7 @@ import AuthContext from "../../Contexts/AuthContext";
 function Login() {
   const { setToken } = useContext(AuthContext);
 
+  console.log(process.env.REACT_APP_API_URL);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -55,7 +56,7 @@ function Login() {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Button variant="primary" type="button" onClick={onSubmit}>
+            <Button variant="primary" type="submit" onClick={onSubmit}>
               Submit
             </Button>
           </Form>
