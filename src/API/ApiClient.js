@@ -20,7 +20,6 @@ class ApiClient {
     }
 
     create(data, postfix = '') {
-        console.log(this.url + postfix, data);
         return axios.post(this.url + postfix, data);
     }
 

@@ -6,8 +6,8 @@ import AuthContext from "../../Contexts/AuthContext";
 import StudentForm from "./StudentForm";
 
 function Students() {
-  const limit = 2;
   const { token } = useContext(AuthContext);
+  const [limit, setLimit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [students, setStudents] = useState([]);
@@ -18,7 +18,7 @@ function Students() {
   useEffect(() => {
     if (token && students.length !== 0) setTimeout(getStudents, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, limit]);
 
   useEffect(() => {
     if (token) setTimeout(getStudents, 1000);
@@ -62,10 +62,10 @@ function Students() {
     <>
       <Container>
         <Row>
-          <Col className="mt-4">
+          <Col className="mt-4" sm={12}>
             <h1 className="text-center">Students</h1>
           </Col>
-          <Col sm={12}>
+          <Col sm={9}>
             <Button className="btn-success" onClick={handleShow}>
               Add Student
             </Button>
@@ -74,6 +74,18 @@ function Students() {
               handleClose={handleClose}
               studentId={editStudentId}
             />
+          </Col>
+          <Col sm={3}>
+            <select
+              className="form-select"
+              onChange={(e) => setLimit(e.target.value)}
+              value={limit}
+            >
+              <option value="2">2</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
           </Col>
           <Col sm={12} className="my-5">
             {students.length > 0 && (
